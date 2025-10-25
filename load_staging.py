@@ -1,6 +1,6 @@
 import pandas as pd
 from google.cloud import bigquery
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 import sys
 import os
 

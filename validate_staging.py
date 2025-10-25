@@ -1,5 +1,5 @@
 from google.cloud import bigquery
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 
 # Define expected schema
 EXPECTED_COLUMNS = {
@@ -50,7 +50,7 @@ def log_batch_metadata(rows: bigquery.table.RowIterator) -> None:
     first_row = next(iter(rows), None)
     if first_row:
         batch_id = getattr(first_row, "batch_id", "UNKNOWN")
-        timestamp = getattr(first_row, "load_timestamp", datetime.now(UTC).isoformat())
+        timestamp = getattr(first_row, "load_timestamp", datetime.now(timezone.utc).isoformat())
         print(f"Batch ID: {batch_id}")
         print(f"Load timestamp: {timestamp}")
     else:
